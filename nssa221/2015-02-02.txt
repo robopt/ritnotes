@@ -36,3 +36,23 @@ Created Monday 02 February 2015
 	* Type 1
 		* Xenserver, VMWare ESXi, MS Hyper-V
 		* Bare-Metal Virtualization
+		* VMM (Virtual Machine Monitor)
+	* Type 2
+		* VMWare Workstation, Virtual Box
+		* Virtualization sitting on top of host OS
+* Virtualization Techniques
+	* Goal: intercept any VM machine instruction that could effect system state.
+	* Binary Translation
+		* the VMM intercepts any system calls that could effect system state and translate them so that they do not impact other VMs.
+	* Hardware Assist
+		* Special processors (Intel-vt and AMD-v) intercept any system calls that would effect the system state and redirect them to the VMM.
+	* Paravirtualization
+		* VM Operating systems are modified so that they are aware that they are running in a virtualized environment. 
+		* Any hypercalls are redirected to the VMM.
+* Virtualization Benefits
+	* Consolidate systems, workloads, and operating environments:
+		* Multiple workloads and operating systems can be combined onto one physical server, reducing the costs of hardware and operations
+			* Workload: What the server does.
+		* New versions of software can be tested on the hardware that they will later use in production mode without affecting production workloads
+		* Virtual systems can be used as low-cost test systems without jeopardizing production workloads
+		* Multiple operating system types and releases can run on a single system. Each virtual system can run the operating system that best matches it's appliucation or user requirements.
