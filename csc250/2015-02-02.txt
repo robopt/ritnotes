@@ -1,0 +1,66 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-02T13:05:39-05:00
+
+====== 2015-02-02 ======
+Created Monday 02 February 2015
+
+* Execution Time Formula
+	* Number of Instruction Executed
+	* times
+	* Time to compute 1 instruction
+		* Cycles per Instruction (weighted average)
+			* Sequential tasks to be performed
+		* Clock Cycle Time
+			* Size of chip
+				* Speed of light -> distance
+	* CISC Lots of small instructions can be parallelized
+
+* Review
+	* Registers
+		* Small bit of memory in the middle of the CPU
+	* Cache
+	* Memory
+
+* MIPS Assembly
+	* R2000
+	* Very RISC
+	* All instructions are real simple
+	* Load/Store machine
+		* Can only access data from load and store instructions
+	* All operands for Arithmatic & logic instructions will be in registers
+	* 32 x 32bit registers
+		* 0 to 31
+		* Specify a register in an instruction by a $ infront
+		* $0..$31
+		* Also given an alias... $[a-z]#
+			* implies what register should be used for
+			* $t0...$t7 (temp)
+				* same as $8...$15
+				* temporary register that you use soon after
+				* ****Not guaranteed to have same value after a function call****
+				* "global" var
+			* $s0...$s7 (system)
+				* same as $16...$23
+				* S registers will/should not be changed by functions
+					* Our job to maintain the values
+					* Not enforced by anyone
+					* Save any values in S registers and revert after use
+				* Treat as a "local" scope
+
+* MIPS Assembly Code
+	* [label:][opcode [operand][, operand]...][# comment]
+	* [label:]
+		* Identifier - Text string to related to a location in memory
+	* [opcode [operand][, operand]...]
+		* Function you wish to perform
+	* [# comment]
+
+* Style Guide
+{1 tab}[label:]{1 tab}[opcode [operand][, operand]...][# comment]
+	* 8 Spaces / 1 Tab width = 8 spaces
+	* 80 Column max
+	* No labels on line with code
+		* use meaningful names
+
+
