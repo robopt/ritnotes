@@ -1,0 +1,145 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-02T10:02:06-05:00
+
+====== 2015-02-02 ======
+Created Monday 02 February 2015
+
+* Lab/Lecture
+
+  Host A		  Host B
+10.0.0.1		 10.0.0.2
+MAC: AAA		MAC: BBB								Host X
+	|			|								11.0.0.1
+	------------------------								MAC: XXX
+			|	  Default GW	   Left NIC		 left NIC		|
+			|	  10.0.0.99	  12.0.0.2		13.0.0.2		|		
+			|	  MAC: CCC	  MAC: EEE	MAC: GGG	|
+			 --------[ router 1 ] ------[ router 2 ]-------[ router 3 ]--------
+				   External NIC 	    Right NIC	   right NIC
+				   12.0.0.1	    13.0.0.1	  11.0.0.99
+				   MAC: DDD	    MAC: FFF	  MAC: HHH
+				
+"Class A" address -> Subnet of 255.0.0.0
+
+* IP Header
+	* Source IP
+	* Destination IP
+* Ethernet Frame
+	* Source MAC
+	* Destination MAC
+
+* A -> B
+	* Source IP
+		* 10.0.0.1
+	* Destination IP
+		* 10.0.0.2
+	* Source MAC
+		* AAA
+	* Destination MAC
+		* ???
+	* Steps
+		* Source takes his ip address
+			* 00001010.00000000.00000000.00000001
+		* Compares to Subnet Mask to Source IP
+			* 11111111.00000000.00000000.00000000
+				* 00001010.00000000.00000000.00000001
+				* 11111111.00000000.00000000.00000000
+				* 00001010.00000000.00000000.00000000
+					* B10 -> 10.0.0.0
+		* Compares to Subnet Mask to Destination IP
+			* 11111111.00000000.00000000.00000000
+				* 00001010.00000000.00000000.00000001
+				* 11111111.00000000.00000000.00000000
+				* 00001010.00000000.00000000.00000000
+					* B10 -> 10.0.0.0
+					* **Since both are 10.0.0.0, the traffic is local.**
+		* A will generate an ARP request asking for B's MAC
+			* Broadcast - Layer 2
+			* Every NIC will try to open the frame
+		* B will generate an ARP reply
+			* Unicast
+			* This is my MAC address: BBB
+* A -> X
+	* Source IP
+		* 10.0.0.1
+	* Destination IP
+		* 11.0.0.1
+	* Source MAC
+		* AAA
+	* Destination MAC
+		* ???
+	* Steps
+		* Source takes his ip address
+			* 00001010.00000000.00000000.00000001
+		* Compares to Subnet Mask to Source IP
+			* 11111111.00000000.00000000.00000000
+				* 00001010.00000000.00000000.00000001
+				* 11111111.00000000.00000000.00000000
+				* 00001010.00000000.00000000.00000000
+					* B10 -> 10.0.0.0
+		* Compares to Subnet Mask to Destination IP
+			* 11111111.00000000.00000000.00000000
+				* 00001011.00000000.00000000.00000001
+				* 11111111.00000000.00000000.00000000
+				* 00001011.00000000.00000000.00000000
+					* B10 -> 11.0.0.0
+					* **Since 10.0.0.0 != 11.0.0.0, the traffic is non-local**
+		* A will generate an ARP request for the Router 1's MAC
+			* Broadcast
+		* Router 1 will generate an ARP reply
+			* Unicast
+			* This is my MAC address: CCC
+		* A will send the ICMP packet to Router 1
+			* [Ethernet Frame][IP Header][ICMP]
+		* Router 1 will unwrap the Ethernet Frame, look at the IP Header and look at the Destination
+			* Since IP Header contains a different destination... Router 1 will look up the Destination IP in the routing table
+				* Routing table: Router 2
+		* Router 1 will ARP for Router 2 if needed
+		* Router 1 will re-wrap with a new Frame
+			* DDD -> EEE
+		* Router 2 will unwrap the Ethernet Frame, look at the IP Header and look at the Destination
+			* Since IP Header contains a different destination... Router 2 will look up the Destination IP in the routing table
+				* Routing table: Router 3
+		* Router 2 will ARP for Router 3 if needed
+		* Router 2 will re-wrap with a new Frame
+			* FFF -> GGG
+		* Router 3 will unwrap the Ethernet Frame, look at the IP Header and look at the Destination
+			* Since IP Header contains a different destination... Router 3 will look up the Destination IP in the routing table
+				* Routing table: Host X is our network!
+		* Router 3 will ARP for Host X if needed
+		* Router 3 will re-wrap with a new Frame
+			* HHH -> XXX
+		* Host X will unwrap the Ethernet Frame, look at the IP Header and look at the Destination
+			* Header contains Host X's IP -> Accept and Unwrap rest of 
+
+ 
+* ARP (Address Resolution Protocol)
+	* ARP is used to find the MAC address that corresponds to a given IP address
+	* ONLY EXISTS WITHIN LAYER 2
+		* Does not use MAC addresses
+	* Does not go past the router
+	* Everyone will discard it but B since his IP matches the Target IP
+	* Missing the Destination MAC
+		* ARP -> WHO HAS 10.0.0.2? TELL 10.0.0.1
+
+* ICMP (Internet Control Messaging Protocol)
+	* Layer 3
+	* Error Reporting
+		* Error messages when necessary
+	* Information Reporting
+		* Informational messages when necessary
+	* PING (Packet Internet Groper)
+
+* DOCSIS
+* ATM
+* PPPoE
+	* Point to Point Protocol over Ethernet
+* Frame Relay
+* HDLC
+	* Default for Cisco Serial interfaces
+
+* Misc Notes
+	* Cannot make all host bits 0
+		* Network Identifier
+	* Subnet mask is never transferred
