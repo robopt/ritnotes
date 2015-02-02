@@ -1,0 +1,76 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-01T11:12:01-05:00
+
+====== 2015-02-01 HW ======
+Created Sunday 01 February 2015
+
+* Zero-Day Vulnerabilities and Unpatched Websites Facilitated Watering-Hole Attacks
+* Ransomware attacks grew by 500 percent in 2013 and turned vicious
+* Social Media Scams and Malware Flourish on Mobile
+* Prevalence of Scams Fail to Change User Behaviour on Social Media
+* Attackers are turning to the Internet of Things
+* Breaches
+	* >10 million identities
+		* 2012 - 1
+		* 2013 - 8
+	* Top 3 Info
+		* Real Name
+		* Birth Dates
+		* SSN
+	* Identities Exposed
+		* 2012 - 552 Million
+		* 2013 - 93 Million
+	* Causes
+		* Hackers - 34%
+		* Accidentally - 29%
+		* Theft/Lost Computer - 27%
+* Mobile
+	* -45% Malware Families
+		* 50% More variants
+	* 69% less Vulnerbilities
+	* 82% of mobile vulnerbilities were iOS
+	* 13% Android
+* Spear-Phishing Attacks
+	* Huge increase in # of campaigns - 91%
+	* Increased attacks on Medium business
+	* Small Business has 1 in 5.2 chance of being targeted
+	* Large has 1 in 2.3
+	* Common words
+		* Re
+		* Order
+		* Payment
+	* Targets
+		* High
+			* Personal Assistant
+			* Media
+		* Medium
+			* Senior Management
+		* Low
+			* Sales
+			* C-Level
+			* Recruitment
+			* R&D
+	* Executable types:
+		* .exe dropped from 39% to 31.3% from 2012 to 2013
+		* .scr increased from 2% to 18.4% from 2012 to 2013
+		* .doc dropped from 34% to 7.9%
+* Web Attacks
+	* 25% more sites had more vulnerbilties between 2012 and 2013
+	* -8% had critical
+	* overall 1 in 8 sites had critical unpatched vulnerbilities
+	* 28% increase in New Vulnerbilities
+	* 1 in 566 websites were found with malware
+* Malware
+	* Top 5
+		* W32.Ramnit - 15.4%
+		* W32.Sality - 7.4%
+		* W32.Downadup - 4.5%
+		* W32.Virut - 3.4%
+		* W32.Almanahe - 3.3%
+	* OSX
+		* OSX.RSPlug.A - 35.2%
+		* OSX.Flashback.K - 10.1%
+		* OSX.Flashback - 9.0%
+		* OSX.HellRTS - 5.9%
+		* OSX.Crisis - 3.3%

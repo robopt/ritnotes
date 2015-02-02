@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-01-26T12:14:55-05:00
+
+====== 2015-01-26 ======
+Created Monday 26 January 2015
+
+* Website
+	* www.cs.rit.edu/~csci250
+		* id: ccs145
+		* pw: notes.now
+	* www.cs.rit.edu/~paw

@@ -1,0 +1,40 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-01-26T07:58:46-05:00
+
+====== 2015-01-26 ======
+Created Monday 26 January 2015
+
+* Horizontal vs Vertical scaling
+	* Vertical scaling
+		* more quality, less quantity
+	* Horizontal scaling
+		* more quantity, less quality
+* Performance
+	* Users for ~2-300ms wait
+* 3 Tier stack
+	* Web Servers
+	* Application Servers
+	* Mainframe
+* Class Intro
+	* What is is about
+		* Scaling up
+		* Figuring stuff out on your own
+	* Not about
+		* Handouts
+	* Framework for learning new languages / technologies
+	* Roles and responsibilities of sys admins
+		* Edward Snowden
+	* Schedule
+		* M: New ideas/technology
+		* W: Finish from Monday, go over lab for Friday
+		* F: Lab
+* Books
+	* Stanek: Windows Server 2012 Pocket Consultant, Ingram, 2013.
+	* Langston: Documentation Writing for System Administration, USENIX.
+	* Vanvugt: Red Hat Enterprise Linux Six Administration, Wiley, 2012.
+		* pdf online
+* Document BEFORE you DO things
+* Labs
+	* Vyatta routers
+	* Write-ups due 1 week after

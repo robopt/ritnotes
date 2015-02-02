@@ -1,0 +1,146 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-01-29T13:59:47-05:00
+
+====== 2015-01-29 ======
+Created Thursday 29 January 2015
+
+* Review of C
+	* Data Types
+		* void
+			* no type, no storage
+		* _Bool
+			* 1-bit integer
+		* char
+			* 8-bit integer
+		* int
+			* "natural sized" integer
+		* float
+			* single-precision floating point, >= 6-digit precision
+		* double
+			* double-precision floating point >= 10-digit precision
+	* Enumerated types
+		* basically integers with names
+		* declare by listing all values in order
+		* enum tag {
+			* v1, v2, ...
+		* } [ var1, var2, ... ];
+	* Pointers
+		* reference to an element of some base type
+		* type var1*, var2*, var3
+			* var1/2 are pointers which point to type
+			* var3 is type
+	* Signed/Unsigned
+		* Positive/Negative vs. non-negative
+		* Defaults:
+			* int signed
+			* char: implementation-dependent
+		* short (int), long (int, double), long long (int)
+			* amount of storage used to represent
+			* short int: >=16bit
+			* long int: >=32bit
+			* long long int: >=64bit
+			* long double: >=10 digits of precision
+	* Memory Scheme
+		* lp64
+			* long and pointers are 64 bit
+		* ilp64
+			* int, long, and pointers are 64 bit
+	* Class Specifiers
+		* auto (all)
+			* Object is created upon entry to block, destroyed upon exit from block
+		* register (any register-sized)
+			* Optimization hint - variable will be used a lot.
+				* keep in cpu register will improve performance
+			* Can be used for function parameters
+			* //Compiler is free to ignore this//
+		* static (all)
+			* Space for data item is maintained for the duration of the program
+			* Global vs local effects
+			* Allocated by the compiler.
+		* extern (all)
+			* Default for items outside the bodies of functions
+		* const (all)
+			* variable contents cannot be changed during execution
+		* restrict (any pointer)
+			* Optimization hint regarding pointers
+			* Only reference to this entity.
+				* Helps with aliasing
+		* volatile (any)
+			* Optimization hint - when //not //to optimize
+			* Variable content may change between accesses
+				* Thus, compiler cannot assume it will be unchanged between uses
+		* Automatic Type Conversion (aka coercion)
+			* float, double, integer, character
+			* i = c, c=> i
+			* c = i, i => c
+			* i = f,
+			* f = i, i => f
+			* i op i, integer operation
+			* i op f, f op i,  i=>f, f pt operation
+			* f op d, d op f, f=>d, double operation
+			* similarly for int variants (short, long)
+		* Explicit Type Conversion (type casting)
+			* Unary prefix operatior: (type) experssion
+			* Causes "conversion" to specified type
+				* May or may not involve an actual change in representation
+				* If there is a change, may lose information(e.g. float to int) — truncation
+		* Arrays
+			* Homogeneous collection of elements of some base type
+			* Can be multi-dimensional
+				* type name [ dimension ];
+				* ...
+		* Structs
+			* Heterogeneous collections of elements
+			* Declare by listing the members in desired storage order
+			* struct [tag ] { data_members } [ vars ];
+			* Need tag if you ever want to refer to this type later
+			* Data members: essentially variable prototypes
+				* Any type that is fully known to the compiler
+					* no self-containing structures
+					* no mutually-containing structures
+			* Member selection . operator
+			* Initializable, 
+			* Examples
+				* struct daytime {
+					* int day;
+					* int month;
+					* int year;
+					* int hour;
+					* int minute;
+					* int second;
+				* };
+				* Allowed { .hour = 1, .month = 3 ... }
+			* Assignment
+				* can "cast" from array
+			* Array of Structures
+				* fine.
+				* more flexible - use designators
+				* struct monthinfo year[12] = {
+					* [1] = { 28, "February" }, ...
+				* }
+		* Unions
+			* Declare like structs.
+			* Declaration order of members is irrelevant.
+			* ALL DATA MEMBERS SHARE THE SAME SPACE
+			* ie. multiple representation of same memory space
+		* Bit fields
+			* Custom sizes for variables
+				* type name : width;
+			* Define name as type occupying width bits
+			* Example
+				* see slide 22
+				* Could pack into 32-bit word
+		* Control Structures
+			* Unconditional transfer (goto label;)
+				* Label is an identifier followed by :
+			* Alter execution of loop body (continue;)
+			* Immediate exit from control structure (break;)
+		* Full List of C Operators: page 39
+		* sizeof Operator
+			* NOT EVALUATED AT RUNTIME
+			* Like a #defined constant
+			* Applicable to anything that is fully known to compiler
+			* Can apply to types/variables
+		* Conditional Expression
+			* a ? b : c

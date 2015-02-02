@@ -1,0 +1,59 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-01-27T13:56:01-05:00
+
+====== 2015-01-27 ======
+Created Tuesday 27 January 2015
+
+* Introduction
+	* Every second of your spare time
+	* Operating system development
+	* http://www.cs.rit.edu/~wrc/courses/csci452
+		* sp-145
+		* amd64+nih
+* Starting content
+	* C review
+	* Intel x86/x64 Assembly
+	* Interfacing between C and assembly
+* Goal
+	* implement low-level system software including device drivers (e.g., terminal, disk, and network devices) and operating system modules;
+	* Experience with OS dev and device development on real hardware
+	* Actually learning how it works on real hardware
+* Textbooks
+	* No required text
+	* However, you may want one or more of these
+		* C programming references
+			* Pointers on C
+				* Kenneth Reek
+			* Programming in C
+				* Stephan Kochan
+			* C Programming
+				* Kernighan/Ritchie
+		* x86/x64 Assembly references
+			* Professional Assembly Language
+				* Richard Blum
+			* Intel 64 and IA-32 Software Developer's Manual
+		* OS references
+			* Operating Systems Concepts
+				* Silberschatz/Galvin/Gagne
+			* Operating Systems Design and Implementation
+				* Tanenbaum/Woodhull
+* Assignments
+	* Programming projects (15%)
+		* various due dates
+	* Team Assignment
+		* Team Selection (5%)
+			* Due 3/10
+		* Project and milestone definition (5%)
+			* Due 4/02
+		* Midterm review (5%)
+			* Due 4/23
+		* Class presentation (10%)
+			* Due 5/12
+		* Final demo (20%)
+			* Final Class (May 12th)
+		* Documentation and Source Code (40%)
+			* After demo
+		* Peer Eval (± points)
+			* After demo
+	

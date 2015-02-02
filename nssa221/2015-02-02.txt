@@ -1,0 +1,38 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-02T08:13:10-05:00
+
+====== 2015-02-02 ======
+Created Monday 02 February 2015
+
+* What does a Sys Admin do?
+	* Understand both the technology and the business mission
+	* Problem Solving
+	* Work with people
+	* Be a facilitator
+	* Train users
+* Qualities of a Successful Sys Admin
+	* INTEGRITY
+		* Sage code of ethics
+	* Ability to listen
+	* Ability to business processes from users and technical perspectives
+	* Resourcefulness
+		* Adapt, improvise, overcome
+* Sys Admin basic strategies
+	* Plan it before you do it
+	* Make it reversible
+	* Make changes incrementally
+	* Test, test, test before you unleash it.
+	* Know how things really work
+* Keeping Balance
+	* A Sysadmin contains equal parts
+		* Technical / computer skills
+		* People and communication skills
+		* Problem-solving / common sense
+	* Goal: Be Prepared.
+		* Anticipate the inevitable and prepare for eventualities
+* Prevention is better
+* Virtualization Models
+	* Type 1
+		* Xenserver, VMWare ESXi, MS Hyper-V
+		* Bare-Metal Virtualization

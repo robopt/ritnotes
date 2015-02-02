@@ -1,0 +1,48 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-01-28T08:06:30-05:00
+
+====== 2015-01-28 ======
+Created Wednesday 28 January 2015
+
+
+* How People Learn
+	* Meta-analysis of learning research from many fields.
+	* Students come to the classroom with preconceptions about ow the world works. If that understanding is not engaged, they may fail to grasp the new concepts and information that are taught, or they may learn them for the purposes of a test but revert to their preconceptions outside the classrom.
+	* 3 key findings
+		* Have a deep foundation of factual knowledge
+		* Understand facts and ideas in the context of a conceptual framework, and
+		* Organize knowledge in ways that facilitate retrieval and application
+	* Metacognitive
+	* Experts vs. Novices
+* Turn novices into experts	
+	* Building a framework around technology
+	* "Know what they know" and "Learning what they need to know"
+* System Administrator
+	* We make stuff useful
+	* **Audits** and **Internal** Control Systems
+		* Organization maintain environments that encourage incorruptibility and deter fraudulent activities
+		* Management integrity:
+			* sets the overall tone for the organization
+		* Competent personnel:
+			* ability to recruit and retain competent personnel, increases comparability of records from year to year.
+		* Segregation of duties:
+			* separates authoritative, accounting, and custodial functions.
+		* Records maintenance:
+			* proper documentation exists for each business transaction.
+		* Safeguards:
+			* prevent unauthorized personnel from accessing company assets.
+* Enterprise
+	* Many points of access
+	* Many devices
+	* Increasing reliance on Internet for: voice and data stores
+	* Scale
+	* Complexity
+	* Evolving architecture
+* IBM's take on Security
+	* Enterprise issues
+		* ex: IRS has 5000 and 125,000 workstations.
+		* To manually install a patch takes on average 45 minutes/workstation.
+		* 125,000 * 45 minutes = 93,750 hours
+		* 2000 hours / year = 47 employees fulltime
+		* $45,000/employee  = $2,000,000/year for 1 patch

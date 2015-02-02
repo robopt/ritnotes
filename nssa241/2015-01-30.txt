@@ -1,0 +1,94 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-01-30T09:58:27-05:00
+
+====== 2015-01-30 ======
+Created Friday 30 January 2015
+
+
+	**OSI				TCP/IP**
+7 Application  \
+6 Presentation|-----------> Application
+5 Session	 /		
+4 Transport  ]--------------> Transport
+3 Network   ]--------------> Network / Internet		
+2 Data Link  \
+1 Physical	 /--------------> Network Interface
+
+** Data Link and Physical are sometimes split.
+
+{{./pasted_image.png?width=543}}
+
+* SSL / TLS (Secure Socket Layer / Transport Layer Security
+* IETF (Internet Engineering Task Force)
+* Addressing
+	* Transport - Layer 4
+		* Ports
+			* Ports are numbers corresponding to services/daemons listing for them
+			* 1 - 1023
+				* well known service ports
+			* 1024 - 49151
+				* registered ports (can globally register it with IANA)
+			* 49152 - 65535
+				* dynamic ranges
+	* Network - Layer 3
+		* IP Addresses
+			* Geographical based on your location
+			* ipv4: 32 bit in length
+			* 1st part: Network Identifier
+				* 129.21.0.0/16
+			* 2nd part: Host Identifier
+				* 129.21.#.#
+			* Class-less
+				* Originally ment to be pigeon holed
+			* Original Classes
+				* Localhost - 127.0.0.1 - Loopback address
+					* "Virtual" NIC
+					* Can ping even if all NIC's are disabled
+						* Test's the IP stack
+				* A
+					* 1-126
+					* 255.0.0.0
+				* B
+					* 128-191
+					* 255.255.0.0
+				* C
+					* 192-223
+					* 255.255.255.0
+				---------------------------
+	* D
+		* 224-239
+		* Multicasting
+	* E
+		* 240-255
+		* Multicasting
+	* Subnet Mask
+		* How people look at you / see you
+		* Which bits is required for the network and the host
+		* Example 1
+			* IP: 10.11.12.13
+			* Subnet: 255.0.0.0
+			* Network: 10.0.0.0
+		* Example 2
+			* IP: 130.1.2.3
+			* Subnet: 255.255.0.0
+			* Network: 130.1.0.0
+		* Example 3
+			* IP: 130
+	* Broadcasting
+		* Multicasting
+		* ** IGMP
+			* 224.0.0.1
+				* All hosts & routers
+			* 224.0.0.2
+				* All routers
+		* 1 -> n
+	* Unicast
+		* 1 -> 1
+	* Data Link - Layer 2
+		* MAC Addresses
+			* Should be specific Interfaces
+			* 48 bytes -> 12 Hex characters
+			* First 6 Hex are manufacturer ID (OUI)
+			* Last 6 Hex are serial # assigned by manufacturer
+			* Should be unique

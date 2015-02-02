@@ -1,0 +1,35 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-01-30T13:20:21-05:00
+
+====== 2015-01-30 ======
+Created Friday 30 January 2015
+
+
+CISC										RISC
+VAX		x86					PowerPC 	ARM	MIPS
+
+* CISC (Complex Instruction Set Computer)
+	* Some of the instructions in the instruction set are complex (alot of work)
+	* Exec Time
+		* Low Instruction Count
+		* High Cycles per instruction
+		* Clock Cycle equal
+	* Example:
+		* VAX
+* RISC (Reduced Instruction Set Computer)
+	* Reduced Complexity - Simple
+	* All instructions are simple
+	* Do a little work.
+	* Exec Time
+		* High Instruction Count
+		* Low Cycle per instruction
+		* Clock Cycle equal
+	* Example:
+		* MIPS
+* Execution Time Formula
+	* Number of Instruction Executed
+	* times
+	* Time to compute 1 instruction
+		* Cycles per Instruction (weighted average)
+		* Clock Cycle Time

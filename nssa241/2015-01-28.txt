@@ -1,0 +1,119 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-01-28T09:55:54-05:00
+
+====== 2015-01-28 ======
+Created Wednesday 28 January 2015
+
+* Remembering OSI Model
+	* All
+	* People
+	* Seem
+	* To
+	* Need
+	* Data
+	* Processing
+		
+			 Data
+[ L5 Data ][ L6 Data ][ L7 Data ] 
+
+		TCP Segment (Layer 5)
+[ TCP Header ][ Data ]
+[ TCP Header ][ Data ]
+[ TCP Header ][ Data ]
+[ TCP Header ][ Data ]
+
+	UDP Datagram (Layer 4)
+[ UDP Header][ Data ][ Data ][ Data] 
+
+	Packet (Layer 3)
+[ IP ][ TCP Header ][ Data ]
+[ IP ][ UDP Header ][ Data ][ Data ][ Data ]
+
+	Frame (Layer 2)
+[ Ethernet ][ IP ][ TCP Header][ Data ][ FCS/CRC ]
+[ Ethernet ][ IP ][ UDP Header][ Data ][ Data ][ Data ][ FCS/CRC ]
+
+* OSI Model (Open System Interconnect)
+	* Layer 7 - Application
+		* API (Application Programming Interface)
+			* No networking going on put the process has started
+		* Examples
+			* DNS (Domain Name System)
+				* Map Name to an IP
+			* DHCP (Dynamic Host Configuration Protocol)
+				* TL;DR: Giving out IP's
+			* HTTP (Hyper Text Transfer Protocol)
+				* Web Protocol
+		* PDU (Protocol Data Unit)
+			* Data
+		* Mainly Software Developers
+	* Layer 6 - Presentation
+		* Compression/Decompression
+		* Encryption/Decryption
+		* Formatting Specification / Adhering to the specification
+		* Data isn't changing but it's representation/how it looks does.
+		* Mainly Software Developers
+	* Layer 5 - Session
+		* Establish, Maintain, and Terminate Connections
+		* Simplex
+			* One way communication
+		* Half-Duplex
+			* 2 way communication
+			* 1 at a time
+			* All wireless is half-duplex (cant send/recieve on same freq)
+		* Full-Duplex
+			* Send an recieve at same time
+			* Wired Networking if the NIC supports it
+		* Between Applications
+		* Mainly Software Developers
+	* Layer 4 - Transport
+		* Between Machines
+		* TCP (Transmission Control Protocol)
+			* Connection oriented communication
+			* Guaranteed Delivery
+			* Acknowledged
+			* Checksum'd
+		* UDP (User Datagram Protocol)
+			* Does not establish a connection
+			* Not Guaranteed Delivery
+			* Not Acknowledged
+			* Not checksum'd
+			* Real-time communication
+				* Audio/Video streaming (not youtube though)
+	* 3 Network
+		* TCP/IP
+		* IP Header is added to datagram/segments encapsulated into a packet
+		* Logical Addresses on the network
+			* Source IP
+			* Destination IP
+	* 2 Data Link
+		* Input - Output / NIC
+		* Ethernet Header and Footer added
+			* Header: Ethernet
+				* MAC Addresses (Media Access Control)
+					* Source MAC
+					* Destination MAC
+			* Footer: FCS (Frame Check Sequence) 
+				* Checksum - CRC (cyclic redundancy check)
+	* 1 Physical
+		* Placed as bits and bytes and turned into a frame
+		* The physical layer defines the means of transmitting raw bits rather than logical data packets over a physical link connecting network nodes. (wiki)
+
+* ISO
+	* International Organization for Standardization (IOS)
+* Protocol
+	* are rules and guidelines
+
+* Programs/Software
+	* Way into a machine / out of a machine is through a program
+	* Daemon/Service (subset of Programs)
+		* Runs independant of a log-on
+		* Usually started before login
+		* Usually closed after login
+* PDU
+	* Protocol data unit
+	{{./pasted_image.png?width=676}}
+
+
+
