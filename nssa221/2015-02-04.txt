@@ -1,0 +1,21 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-04T08:03:21-05:00
+
+====== 2015-02-04 ======
+Created Wednesday 04 February 2015
+
+* Virtualization Benefits
+	* Optimize resource use:
+		* Hypervisors can achieve high resource use by dynamically assigning virtual resources (such as processors and memory) to physical resources through mechanisms such as dispatching and paging. The virtual resources that they provide can exceed the physical system resources in quantity and functionality.
+		* System virtualization enables the dynamic sharing of physical resources and resource pools. This results in higher resource use, especially for variable workloads whose average needs are much less than an entire dedicated resource.
+		* Different workloads tend to show peak resource use at different times of the day and week, so implementing multiple workloads in the same physical server can improve system use, price, and performance.
+	* Improve IT flexibility and responsiveness:
+		* Service providers can create one virtual system or clone many virtual systems on demand, achieving dynamic resource provisioning.
+		* Virtual systems with variable resources enable the manual or automated management of workload resources.
+* More Virtualization
+	* Storage virtualization:
+		* Storage virtualization resolves the increasing complexity of managing storage by combining multiple storage devices into a single logical resource with a single view.
+	* Network Virtualization:
+		* Network virtualization is the ability to manage and prioritize traffic in portions of a network that might be shared among different enterprises.
+		* Network virtualization technologies include virtual private networks (VPNs), Hypersockets, and virtual LANs.

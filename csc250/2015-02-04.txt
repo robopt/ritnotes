@@ -1,0 +1,41 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-04T13:01:22-05:00
+
+====== 2015-02-04 ======
+Created Wednesday 04 February 2015
+
+* Style Guide Continued
+	* Lots of lines of code.. 
+		* Comments are important
+		* Not what each line of code is "doing", but the block is doing
+			* Assume he can do the assembly
+* ALU Instructions
+	* Arithmatic Logic Unit
+	* All binary operators will take 3 operands
+	* All operands will be registers
+		* r1 = r2 op r3
+			* add rd, rs1, rs2
+				* rd = destination
+				* rs# = sources
+			* sub rd, rs1, rs2
+				* rd = destination
+				* rs# = sources
+			* and rd, rs1, rs2
+				* rd = destination
+				* rs# = sources
+			* or rd, rs1, rs2
+				* rd = destination
+				* rs# = sources
+			* nand rd, rs1, rs2
+				* rd = destination
+				* rs# = sources
+			* nand rd, rs1
+				* rd = destination
+				* rs1  = source
+* Immediate
+	* imm being a #
+	* addi rt, rs1, imm
+	* ori rt, rs1, imm
+	* xori rt, rs1, imm
+	* nandi rt, rs1, imm

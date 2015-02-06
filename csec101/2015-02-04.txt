@@ -1,0 +1,107 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-04T17:13:13-05:00
+
+====== 2015-02-04 ======
+Created Wednesday 04 February 2015
+
+* Ethics vs Morals
+	* Both relate to "right" and "wrong" conduct
+	* Ethics
+		* Series of rules provided to an individual by an external source. e.g. their profession.
+	* Morals
+		* An individual's own principles regarding right and wrong.
+
+* Four Ethical Standards
+	* Rights
+		* Individuals' basic needs and welfare.
+	* Justice
+		* How the costs and benefits of an action or a policy can be distributed fairly among a group.
+	* Utility
+		* The positive and negative effect than an action or a policy has on the public.
+	* Care
+		* The relationships we have with other individuals.
+
+* Are these standards enough?
+	* Why or why not?
+		* Although these standards provide a vocabulary for thinking about how to resolve ethical conflicts, they are imprecise, and they often conflict with one another.
+
+* Ethical Obligations
+	* Something that you must do because of a law, rule, promise, etc.
+	* Something that you must do because it is morally right
+	* Need a framework based on obligations
+		* to your employer
+		* to your public
+		* to the environment
+	* Obligations to your employer
+		* Competence and diligence
+		* Honesty and candor
+		* Confidentiality
+		* Loyalty
+	* Obligations to the public
+		* Products and services are safe and effective
+	* Obligations to the environment
+		* Prevent actual or potential occurance of environmental damage
+
+* ACM
+	* ACM Members
+		* Contribute to society and human well-being.
+		* Avoid harm to others.
+		* Be honest and trustworthy.
+		* Be fair and take action not to discriminate.
+		* Honor property rights including copyrights and patent.
+		* Give proper credit for intellectual property.
+		* Respect the privacy of others.
+		* Honor confidentiality
+	* Computing Professionals
+		* Strive to achieve the highest quality, effectiveness and dignity in both the process and products of professional work.
+		* Acquire and maintain professional competence.
+		* Know and respect existing laws pertaining to professional work.
+		* Accept and provide appropriate professional review.
+		* Give comprehensive and thorough evaluations of computer systems and their impacts, including analysis of possible risks.
+		* Honor contracts, agreements, and assigned responsibilities.
+		* Improve public understanding of computing and its consequences.
+		* Access computing and communication resources only when authorized to do so.
+
+* Activity
+	* Brainstorming phase
+		* List risks, issues, problems, consequences.
+		* List all the stakeholders.
+		* List possible actions.
+	* Analysis phase
+		* Identify the responsibilities of the decision-maker.
+		* Identify the rights of stakeholders.
+		* Consider the impact of the action options on the stakeholders.
+		* Find sections in codes of ethics that apply. Categorize each potential action or response as ethically obligatory, ethically prohibited, or ethically acceptable.
+		* Consider the ethical merits of each option and select one.
+
+* Loophole
+	* You suspect and find a loophole in the company's network security system that allows you to access other employees' records.
+	* You tell the sys admin about the loophole, but you continue to access other employees' records until the problem is corrected two weeks later.
+	* Is there an ethical problem?
+		* Yes, Continuing to view the records is a breach of the "Respect the privacy of others" in addition to the "Honor Confidentiality Rule"
+
+
+* Activity
+	* **Brainstorming phase**
+		* **List risks, issues, problems, consequences.**
+			* Privacy invasion, seeing information that you shouldn't see.
+		* **List all the stakeholders.**
+			* Any person whose information you view or the people who are related to the information you are reading.
+		* **List possible actions.**
+			* Ignore the fact you looked at the records
+			* Try to cover your tracks (logs)
+			* Report yourself?
+	* **Analysis phase**
+		* **Identify the responsibilities of the decision-maker.**
+			* The decision maker has a responsibility to not make any decision or let anything he/she saw influence him/her.
+		* **Identify the rights of stakeholders.**
+			* The decision maker has a right to not indict himself.
+		* **Consider the impact of the action options on the stakeholders.**
+			* Continuing to view the records is a breach of the 
+		* **Find sections in codes of ethics that apply. Categorize each potential action or response as ethically obligatory, ethically prohibited, or ethically acceptable.**
+			* Ethically prohibited: It violates the "Respect the privacy of others" in addition to the "Honor Confidentiality Rule" of the ACM.
+		* **Consider the ethical merits of each option and select one.**
+			* Obligations to the employer
+				* Honesty and candor
+				* Confidentiality

@@ -1,0 +1,60 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-04T10:01:04-05:00
+
+====== 2015-02-04 ======
+Created Wednesday 04 February 2015
+
+* Input
+	* Logically:
+		* Program/Service/Daemon
+	* Physically:
+		* NIC
+* Switch
+	* Transmit on 
+		* 3,6
+	* Recieve on
+		* 1,2
+	* Transparent - Layer 2
+	* Is a separate NIC
+	* Can give switch an IP
+	* SAT (Source Address Table)
+		* Cisco: MAC Address Table
+		* Alias: Content Addressable Memory
+		* * Maps Mac addresses to Interfaces
+* Hub
+	* Broadcast
+		* Send to all ports
+* Management Protocol
+	* SNMP
+	* Telnet
+	* SSH
+* RJ-45
+	* Twisted Pair
+		* Signal bleeding
+	* 8 pins and 8 wires
+	* 100mbit uses 4 wires
+	* Transmit on 
+		* 1, 2
+		* Positive & Negative
+	* Recieve on
+		* 3, 6
+		* Positive & Negative
+	* EIA 586A
+		* 1 - TX +
+		* 2 - TX --
+		* 3 - RX +
+		* 4 - TRD2 +
+		* 5 - TRD2 --
+		* 6 - RX --
+		* 7 - TRD3 +
+		* 8 - TRD3 --
+	* EIA E86B
+		* 1 - RX +
+		* 2 - RX --
+		* 3 - TX +
+		* 4 - TRD2 +
+		* 5 - TRD2 --
+		* 6 - TX --
+		* 7 - TRD3 +
+		* 8 - TRD3 —

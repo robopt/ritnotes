@@ -1,0 +1,227 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-05T13:55:50-05:00
+
+====== 2015-02-05 ======
+Created Thursday 05 February 2015
+
+* x86 Architecture
+	* Why Study Assembly Language
+		* HLL are user-friendly
+			* provide an abstract view of the machine
+		* Assembly language are machine friendly
+			* Harder for humans to use
+		* Direct HW access often requires assembly language
+			* HLL can't do everything
+				* Can't directly access registers
+				* Compiler controls the set of usable machine instructions
+		* How to minimize the pain?
+			* Our approach: learn just enough to do what we need
+			* Do as much as possible in HLL
+				* Use assembly only for things that can't be done in HLL
+	* Evolution of the x86 Architecture
+		* 1978 - 8086/8088
+			* 16-bit registers, buses, no onboard FP
+			* 1 MB address space
+		* 1982 - 80186/80188
+			* 16-bit, no onboard FP
+			* Reduced microcode
+			* ISA additions: ENTER/LEAVE, PUSHA/POPA
+			* Target: embedded applications
+		* 1982 - 80286
+			* Still 16-bit, no onboard FP
+			* Added protected mode, weird segmented memory
+			* 24-bit address lines -> 16MB address space
+		* 1985 - 80386
+			* First 32-bit x86 (SX: 16-bit external bus)
+			* Reworked VM: paged segmentation
+			* Still no onboard FP
+		* 1989 - 80486
+			* First onboard FP (DX models)
+			* First onboard cache (8k instruction cache)
+			* First internal pipeline
+		* 1993 - Pentium
+			* Fifth generation (P) microarchitecture
+			* First superscalar x86 (dual pipelines)
+			* 64-bit datapath
+			* FP bug
+				* 1 error every 14 hours
+		* 1995 - Pentium Pro
+			* Sixth generation (P6) microarchitecture
+			* Added on-package L2 cache (dramatic improvement)
+		* 1997 - Pentium II
+			* Penium Pro with MMX instructions
+			* Low-end version (Celeron) had no L2 cache
+			* Later Celerons had L2 cache, but kept the name
+		* 1999 - Pentium III
+			* Added SSE instructions
+			* Added CPU serial number and "cpuid" instruction
+		* 2000 - Pentium 4
+			* Seventh generation (NetBurst) microarchitecture
+			* Added Hyperthreading
+			* L1 cache change: cached micro-ops
+			* Dramatically higher clock rates
+				* High rate -> short cycle -> short pipeline stages Internal pipeline 20+ stages - final version had 31
+		* 2003 - Pentium M
+			* For "mobile" systems - lower power/clock than P4 Based P6, not NetBurst
+			* No Intel64
+		* 2004 - Pentium 4
+			* Added Intel64 instructions and registers
+		* 2005 - Pentium D
+			* Based on NetBurst
+			* First announced multi-core desktop CPU
+			* Supports Intel64
+		* 2006 - Intel Core, Intel Core 2
+			* Microarchitecture; Intel Core (based on Pentium M)
+			* Availiable in single-core and multi-core models
+			* Dropped HT
+		* 2008 - Intel Atom
+			* Low-power, ultra-mobile applications
+			* Single and dual-core models
+		* 2008 - Intel Core i7
+			* Reintro'd HT
+		* 2009 - Intel Core i5
+		* 2010 - Intel Core i3
+		* 2010+ Further CPU/GPU integration
+	* Using the x86 Architecture
+		* So what do we really need to know about it?
+		* Topics:
+			* a
+			* b
+			* c
+	* Using the Assembler
+		* Many to choose from
+		* Dueling syntax:
+			* Intel syntax: MASM, NASM, TASM, etc.
+			* AT&T syntax: GNU assembler, Sun assembler
+		* We'll use the GNU assembler, as
+		* Basic statement syntax:
+		[ label: ] [ opcode [ src [ , dst ] ] ] [ // comment ]
+	* Assembler Directives
+		* Lots and lots - we'll look at the most common
+		* Alignment:
+			* .align expr
+			* expr is the desired alignment
+				* ELF: align at a multiple of this value
+				* a.out, PE: align so that this many low-order bits are 0
+		* Program section
+			* text
+			* data
+	* Data generating - numeric:
+		* .byte
+		* .word
+		* .long
+		* .quad
+		* .octa
+		* .float
+		* .single
+		* .double
+	* Data generating - string:
+		* .ascii
+		* .asciz
+			* NUL terminated
+		* .string
+			* NUL terminated
+	* Uninitialized storage:
+		* .comm sym , nbytes [ , align ]
+		* .lcomm sym , nbytes [ , align ] 
+		* .comm marks the symbol as global
+	* Visibility
+		* .global	sym
+		* .globl	sym
+		* if defined in this module, export it to other modules
+		* If not defined in this module, import from another module
+			* Not strictly necessary - as treats --- <complete>
+	* Register Structure
+		* Backward compatible to the dawn of time
+		* General registers
+			* Data
+			* Index/pointer
+		* Segment
+		* Status/control
+		* 8-bit vs 16-bit vs 32-bit vs 64-bit
+	* Data Registers (1)
+		* 64 bit, but can use as 32, 16, 8
+			* 64bit
+				* %r?x
+			* 32bit
+				* %e?x
+			* 16bit
+				* %?x
+			* 8bit
+				* %?h, %?l
+		* Names
+			* Accumulator
+				* %rax, %eax, %ax
+			* Base
+				* %rbx, %ebx, %bx
+			* Counter
+				* %rcx, %ecx
+			* Data
+				* %rdx, %edx
+	* Data Registers (2)
+		* Registers 8 through 15 available in 64-bit mode
+		* Formats:
+			* 64bit - %r?x
+			* 32bit - %e?x
+			* 16bit - %?x
+			* 8bit - %?l
+		* Names
+	* Index Registers
+		* 64-bit, but can use as 32-bit, 16-bit or 8-bit
+		* Formats:
+			* 64bit - %r?
+			* 32bit - %e?
+			* 16bit - %?
+			* 8bit - %?l
+		* Names
+			* Source index:
+				* %rsi, %esi, %si, %sil
+			* Destination index:
+				* %rdi, %edi, %di, %dil
+			* Stack pointer
+				* ??
+			* Base pointer
+				* ??
+	* Segment Registers
+		* Segmented memory architecture
+		* Six segment registers:
+			* Code segment: %cs
+			* Stack segment: %ss
+			* Data segments: %ds, %es, %fs, %gs
+		* Contents vary depending on CPU mode
+			* Real mode: 16-bit segment base address
+			* Protected mode: segment descriptor (index, flags)
+			* 64-bit mode: same as protected mode, except...
+				* CS, SS, DS, ESL segment base address assumed to be 0
+				* **Limit checks** disabled on all segment registers
+		* Important when we get to interrupt handling
+	* Status/Control Registers
+		* Instruction pointer: %rip, %eip, %ip
+		* Status register: %rflags, %eflags, %flags
+			* Condition Code bits - CF, ZF, SF
+				* Carry, Zero, Signed
+			* Direction flag (DF) - used in block moves
+			* Interrupt enable (IF)
+		* Lots of others:
+			* CPU control (3): %cr0, %cr2, %cr3
+				* Cant use %cr1
+			* Debug registers (6): %db0 through %db3, %db6, and %db7
+			* FP stack (8): %st, or %st[0-7]
+			* Others
+	* Addressing modes
+		* Three basic modes
+		* Register mode: %name
+			* Size and specific register should agree with instruction
+		* Immediate mode: $value
+			* Without the $, assembler interprets this as a memory operand
+		* Third mode: memory reference
+		* Memory operand syntax:
+		[ offset ] [ ( [ base ] [ , index [ , scale ] ] ) ]
+	* offset - abolute or relocatable values
+	* base - 32/64-bit register containing an absolute or relocatable value
+	* index - 32/64-bit register containing an absolute value
+	* scale - integer; 1, 2, 4, 8
+	* All fields are optional
+		* ...but must have atleast one of ...
+	* Addressing Mode examples

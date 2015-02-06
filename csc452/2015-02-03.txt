@@ -1,0 +1,42 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-03T14:10:10-05:00
+
+====== 2015-02-03 ======
+Created Tuesday 03 February 2015
+
+* Pointers
+	* References to things
+	* NULL Pointer
+		* Guaranteed to be invalid
+		* "This pointer points to nothing"
+		* Representation varies
+		* Typically in <stdio.h>
+		* (void*)0
+	* Void Pointer
+		* Generic pointer
+		* "Pointer to byte"
+	* Pointer Arithmetic
+		* Pointer ± integer
+		* Pointer - pointer
+		* Scaled arithmetic
+			* Increment is multiplied by the size of what the pointer points to
+			* Incrementing a pointer to a "thing" makes it point to the next "thing" in memory
+		* Can compare pointers to same base type
+			* Can use all relationals: < <= == != >= >
+	* Function Pointers
+		* Concept: declare pointer to an entity having
+			* A specific set of arguments
+			* A specific return values
+		* Syntax of function declaration:
+			* type name ( arglist );
+			* Declaresname as a function taking arglist as a parameter
+* CPP Directives
+	* #<directive> <option>
+	* File Inclusion
+		* CPP "Splices in" the file's contents at this point
+		* Two forms:
+			* #include "path"
+				* Search current working directory
+			* #include <path>
+				* Search path
