@@ -1,0 +1,139 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-24T14:11:26-05:00
+
+====== 2015-02-24 ======
+Created Tuesday 24 February 2015
+
+* KEN-X Format Register Layout
+	* Bit 3 Odd parity
+		* if 1 -> odd parity, 0 -> even
+	* Bit 2 Parity enable
+		* if 1 -> check parity
+	* Bit 1-0 Bits per character
+		* The number of data bits in transmitted and received characters
+		* Settings:
+			* 00 - 5bit
+			* 01 - 6bit
+			* 10 - 8bit
+			* 11 - 7bit
+	* Received data register 
+		* Contains the data bits of the most recently received character
+		* If character size < 8 bits, the data will be right-justified and zero filled.
+		* Reading this when RX_READY is zero returns unpredictable values
+	* Transmitted data register
+		* Contains the data bits of the character to be sent
+		* If character size < 8 bits the data must be right-justified and zero-filled
+		* Writing this when TX_READY is zero will cause unpredictable results
+* Using the KEN-X Controllers
+	* Set individual fields with binary patterns
+	* Configure device by:
+		* Determine *** page 16 **
+	* Must configure the controller before using it
+		* Well look at the KEN-2
+	* Two important registers:
+		* Format - Controls transmit/receive chracteristics
+		* Interrupt enable - control interrupt behavior
+	* One format register -> must set all options at once!
+		* KEN2FORMAT = OPTION1 | OPTION2 | OPTION3
+	* Cannot verify settings
+	* Interrupt Enable Register - controls behavior
+		* Again one register!
+		* KEN2INT_ENABLE = TX_INT_ENABLE | SEL_INT_ENABLE;
+	* Notes:
+		* Again can't read this register, so cant verify settings
+		* KEEP A COPY OF SETTINGS
+	* Writing Characters - Polling
+		* No interrupts
+		* Look at status register to determine device state
+		* example on page 22
+	* Device registers associated with an i/o port
+		* KENX_STATUS_PORT
+		* KENX_TX_DATA_PORT
+	* Use special i/o machine instructions to access
+	* To simplify, often create i/o functions 
+* Communication Methods - Interrupts
+	* Better idea: have device generate interrupts
+		* Hardware-level signal to CPU
+		* CPU does "real" work until then
+		* Much more efficient - dont waste time checking devices
+	* Sequence:
+		* Device generates interrupt
+		* CPU suspends current activity
+		* CPU executes interrupt service routine (ISR)
+		* When ISR terminates CPU resumes what it was doing
+	* Locating the ISR
+		* Hardware must know where the ISR is
+		* Simplest method: hard-wired location
+			* ISR always resides at a specific location in memory
+			* Very limiting
+			* Variation: register in PCU contains ISR address
+				* OS can change register contents to switch ISRs
+		* Better method:
+			* Vectored interrupts
+	* Vectored Interrupts
+		* ISR addresses held in an interrupt vector
+			* Array of pointers to ISRs
+			* May have other information as well (CPU state into, etc)
+		* Interrupts are numbered
+			* Interrupt number used as an index into the vector
+		* Very flexible
+			* Separate ISRs for separate interrupts
+			* Can easily change ISRs as needed
+	* Lots of hardware support required
+		* Device must know how to generate interrupts
+		* CPU must recognize interrupts
+	* Sometimes may not want interrupts to occur
+	* Control with enable bits
+		* Typically on both CPU and device
+			* CPU only recognizes interrupts when enabled
+			* Device only generates interrupts when enabled
+	* CPU Interrupt Enabling Mechanisms
+		* Single "interrupt enable" bit
+			* Enables/disables handling of all interrupts by CPU
+		* Multiple "interrupt enable" bits
+			* One enable bit per category of interrupt
+		* Prioritized Interrupts
+			* Several bits (typically, 2-4) containing the current CPU priority level
+			* Each interrupt has a priority level
+			* Device can request an interrupt only when CPU priority level is less than the devices priority level
+			* When interrupt occurs, CPU priority level set to that of the interrupt
+	* Review: KEN-2 Interrupt Enable Register Layout
+		* page 32
+	* Important details
+		* Interrupts occur on 0->1 transition of READY bit
+			* Receiver: after character comes in from device and is available
+			* Transmitter: after previous character has been sent to device
+		* How to write string?
+			* First character must be sent manually (copy to transmitter data register)
+			* Interrupt occurs when that character has been sent
+			* On interrupt, send next character
+		* How to read string?
+			* Incoming characters gernerate interrupts
+			* On intterupt, read character and save somwhere
+		* More complicated than polled
+			* Setup intterupt vector entry point to ISR
+			* Configure the device
+			* Enable interrupts
+			* Go off and do other work 
+		* **Vector setup depneds on underlying archtecture**
+		* Configure Format register as before
+			* KEN2FORMAT = OPTION1 | OPTION2 | OPTION3
+	* Enabling Interrupts on the x86
+		* CPU interrupt state controlled by IF bit in EFLAGS
+		* Two important instructions: sti and cli
+		* C-callable enable/diable functions
+			* enable_cpu_interrupts
+			* disable_cpu_interrupts
+		* Alternative: asm pseudo-function
+			* only available in some compilers
+		* Variants
+			* asm("sti");
+			* __asm("sti");
+			* __asm__("sti");
+		* Faster than an actual function call
+		* Less flexible
+	* Writing Characters
+		* example on page 37
+		* ISR handles remianing characters one-per-interrupt
+			* example on page 38

@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-17T14:12:19-05:00
+
+====== 2015-02-17 ======
+Created Tuesday 17 February 2015
+
+* Runtime Contraints
+	* Examining 
+	* static -> PC relative location
+		* offset from current instruction pointer
+

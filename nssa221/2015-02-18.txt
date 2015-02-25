@@ -1,0 +1,13 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-18T08:05:20-05:00
+
+====== 2015-02-18 ======
+Created Wednesday 18 February 2015
+
+* DNS Naming Structure
+	* microsoft.com
+		* corp.microsoft.com
+			* mfg.corp.microsoft.com
+			* asdf.corp.microsoft.com
+		* products.microsoft.com

@@ -1,0 +1,27 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-11T08:06:23-05:00
+
+====== 2015-02-11 ======
+Created Wednesday 11 February 2015
+
+
+* DNS Record Types
+	* A Record
+		* Hostname (Hostname -> IP)
+	* CNAME
+		* Canonical Name (Alias)
+		* Multiple names.
+			* EX: www
+	* MX
+		* Mail Exchange Record
+	* NS
+		* Name Server
+	* PTR
+		* Pointer record (used mostly for reverse DNS)
+	* RP
+		* Responsible Person
+	* SOA
+		* Start of Authority
+	* SRV
+		* Service Locator

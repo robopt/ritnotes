@@ -1,0 +1,138 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-23T17:22:18-05:00
+
+====== 2015-02-23 ======
+Created Monday 23 February 2015
+
+* TCP/UDP
+	* over layer 4 - transport layer
+	* Ports are part of a socket
+* Scanning
+	* Broad topic
+		* Wireless scans and war-driving
+		* OS finger printing
+		* Layer scans such as ARP
+		* IPv6 scans
+	* Most people think port scans
+	* Most people think nmap = port scans
+* Recall clients and servers
+	* Ideas
+		* sockets (ports and IP addresses)
+		* Client and server software
+		* Client and server machines
+	* MAC Addresses are not int it
+* What is a port scan
+	* Examination of the status of the layer 4 ports
+	* Can b used as a basis for other types of more in-depth scans
+	* Both TCP and UDP scans can be done
+		* NOT THE SAME
+	* Since TCP and UDP behave differently, the scan must be accomplished using different techniques
+	* We'll cover both
+* SMP
+	* simple management protocol
+* Start with TCP scans
+	* Remember the handshakes
+	* The connection handshake is what we are after
+	* Turns out that you can also use this to tie up a server
+		* DoS (Denial of Service)
+		* SYN flood
+			* Repeatedly sending SYN requests, server allocates resources / thread
+* Attack topology
+	* The attacker aims nmap at a target
+		* May or may not be on the same network
+	* For TCP, a collection of packets with the SYN flag set are directed at the target
+		* SYN ACK for ports which are open
+		* RST ACK for ports which are closed
+	* For UDP, A straight forward connection attempt with no handshake
+		* This time we will simply send UDP packets the varying destination ports
+		* ICMP destination unreachable
+
+
+Nmap: Scanning the Internet
+* Scan Challenges
+	* P2P scanning?
+	* Legal Issues
+	* ISP response
+		* nmap dev? lolk
+	* US DoD response
+		* DoD JTF-GNO: Joint Task Force for Global Network Operations
+		* stop it
+	* Firewalls
+		* Network conditions often differ signficantly behind firewalls vs Internet scanning
+		* Contributed data
+	* Performance and Accuracy
+		* Internet scanning is long, hard work. Can be hisheartening:
+		* Finding and resolving performance issues
+* Optimizing Host Discovery
+	* Goals
+	* Big challenge: Deciding on discovery methods
+	* Echo requests and even Nmap default discovery (TCP ACK to port 80 & echo request) are often insufficient for Internet scanning
+	* TCP Host discovery methods
+		* SYN packet discovery (-PS)
+			* Best against stateful firewalls
+		* ACK packet discovery (-PA)
+			* Best against stateless firewalls
+		* Top Ports
+			* Adding more TCP SYN and ACK probes can help, burt which ports work the best?
+				* 80 / http
+				* 25 / smtp
+				* 22 / ssh
+				* 443 / https
+				* 21 / ftp
+				* 113 / auth
+				* 23 / telnet
+				* 53 / domain
+				* 554 / rtsp
+				* 3389 / ms-term-server
+			* Some with syn probes, some with syn acks
+	* UDP Host Discovery (-PU)
+	* ICMP Host Discovery (-PE, -PM, -PP)
+		* Some systems intentially allow echo requests, but block the others
+		* Others block echo requests explicitly 
+	* Protocol Ping (-PO)
+		* Default is to send 3 probs, for protocols 1 (ICMP), 2 (IGMP) and 4 (IPnP)
+	* Enhanced Discovery Results
+* Upgrade your Nmap
+	* svn 
+* Default Scan Ports
+	* 1715 ports for TCP scans
+	* 1488 for UDP scans
+	* 1-1024 + all named ports
+* Augmented nmap-services
+	* -F fast scan
+* Fast Sccan Example
+	* nmap -sUP -F -T4 scanme.nmap.org
+	* 4.68: 1h 2min
+	* With bhdc08: 6min 29sec
+	* With bhdc08 & "--version-intensity 0": 13 sec
+	* All three found the same open port: 53
+* -top-ports n
+* -port-ratio n
+* Top TCP
+	* 80
+	* 23
+	* 22
+	* 443
+	* 3389
+	* 445
+	* 139
+* Top UDP
+	* halp
+* Packet Rate control
+	* min-rate
+	* max-rate
+* nmap -S <src> -d --max-scan-delay 10 -oA logs/tcp-allports-%t-%d -iL tcp-allports-1M-IPs --max-retries 1 --randomize-hosts -p--PS21,22,23,25,53,80,443 -T4 --min-hostgroup 256 minrate 175 -max-rate 300
+* Nmap Scripting Engine (NSE)
+nmap -v -PN -sU -p53 -T4 --script=dns-test-open-recursion,dns-safe-recursion-port.nse,dns-safe-recursion-txid.nse
+nmap -A -T4 <src>
+CVE-1999-0024
+* REASON
+	* --reason
+	* TELLS YOU WHY.
+nmap -vv -n -sS -P0 -p 445 --ip-options "L 10.4.2.1" 10.5.4.1
+Zenmap GUI
+
+
+Ncat
+

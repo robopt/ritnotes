@@ -1,0 +1,102 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-23T07:57:30-05:00
+
+====== 2015-02-23 ======
+Created Monday 23 February 2015
+
+* User Accounts: Linux vs. AD
+	* Active Directory
+		* Windows originally a single user system
+		* Domain accounts part of distributed multi-master database
+		* Give access to many resources also controlled by the AD
+		* By default are replicated to all DCs that are part of a AD
+	* Linux
+		* Originally a multi-user system
+		* Each machine has it's own passwd file that lists user accounts
+		* Each machine has its own groups file that lists all the groups
+		* To syncronize accounts machines, you have to synchronize passwd and groups files
+* Win2K# User Account Administration
+	* What are they used for?
+	* Context:
+		* Local Accounts
+		* AD Accounts
+	* What do non-IT users value?
+		* Stability of platform
+		* Reliable and consistent access to resources
+* Types of Accounts
+	* Authentication vs Authorization
+		* Authentication
+			* Proving who you assert to be
+		* Authorization
+			* What resources do you get?
+			* Privileges
+	* Local user accounts
+		* Uses SAM access
+			* SAM?
+		* Does not exist in AD
+			* No network resources, no authentication
+	* Built-in user accounts
+		* Administrator - Access? Permissions? Concerns?
+		* Guest - Access? Permissions?	Concerns?
+		* Process control
+	* Domain user accounts
+		* Domain user
+		* Domain administrator
+* Account Authentication
+	* Local accounts
+	* Domain accounts
+		* Authenticated by a domain controller
+		* Authenticated users receive a SID
+			* SID functions like a ring of keys that fits into locks associated with network resources
+		* User profile
+			* What is stored, how stored, what is transferred?
+* User Profiles
+	* What is a profile?
+		* Group of user settings that define the look and feel of a user's environment
+		* Includes appl. settings & desktop environment
+		* Network connections
+	* Default profile
+		* Used by users in standard configuration
+		* User changes stored locally
+* Types of User Profiles cont.
+	* Roaming profile
+		* Stored on network drive
+		* Allows user to have same desktop on any machine they log in to on your network
+		* Choices - Roam, home path
+		* Active Directory handles this
+	* Mandatory profiles
+		* Changes to desktop and ohter settings are not saved
+		* Gives a much higher level of control over the desktop
+		* Avoids many issues where multiple users use one computer
+* How does computer system security provide protection?
+	* System Access Controls
+		* Ensure unauthorized users don't access the system
+		* Require legitimate users to follow good security practices
+		* Protect password data
+		* Keep track of what users are doing on the system
+	* Data Access Controls
+		* Monitor who can access what data and for what purpose
+	* System and Security Administration
+	* Offline procedures and policies
+		* Clearly define the responsibilities of the system administrator and user
+		* Train and monitor users
+		* Risk management and analysis
+	* System Design
+		* Looks at system architecture for things like segmentation of memory to prevent one application accessing the memory resources allocated to another
+* User Accounts
+	* Common Themes:
+		* What are you logging into?
+			* Domain
+			* Individual system
+		* Every user must have a username and password to logon
+			* Other kinds of users
+		* Group membership as a means to manage system rights and permissions
+			* Standard groups of users
+			* Guest, Administrator, root
+* Enterprise Authentication
+	* How does this translate into an enterprise environment?
+		* Identity Management
+		* IAM
+		* Federated Identities
+		* Role Based Access Control (RBAC)

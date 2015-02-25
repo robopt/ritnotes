@@ -1,0 +1,49 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-12T14:05:05-05:00
+
+====== 2015-02-12 ======
+Created Thursday 12 February 2015
+
+* 32-bit
+	* movl
+		* move long word (double word) 
+	* addl
+		* add long word
+	* popl
+		* pop long word
+	* pushl
+		* push long word
+* 64-bit
+	* movq
+		* move quad word
+	* addq
+		* add quad word
+	* popq
+		* pop quad word
+	* pushq
+		* push quad word
+* Stack Frame Layout
+	* Version Specific
+* Stack Frame and Usage Rules
+	* You must compute required space:
+		* ... for all local variables
+		* ... for any temporary storage
+		* ... for longest function call parameter list
+		* ... for register save area (possibly?)
+	* To set up stack frame:
+		* could use enter $n, $0
+		* could save registers and then move %esp/%rsp back
+	* Must save/restore if used:
+		* x86: %ebx, %esi, %edi, %esp, %ebp
+		* x86_64: %rbx, %rsp, %rbp, %r12 through %r15
+	* Most other registers can be modified at will
+* ar command
+* ret vs retq
+
+
+
+* Runtime Constraints
+	* How many register variables can you have?
+	* How are non-int parameters passed?
+	* How are 

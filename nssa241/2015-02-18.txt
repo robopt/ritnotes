@@ -1,0 +1,46 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-18T10:00:22-05:00
+
+====== 2015-02-18 ======
+Created Wednesday 18 February 2015
+
+* STP TIE-BREAKERS
+	1. Lowest Root Bridge ID
+		* only used in step 1 of electon
+	2. Lowest Root Path Cost to Root Bridge
+	3. Lowest Sender Bridge ID
+	4. Lowest Sender Port ID
+
+All ports on the Root Bridge is a designated Port.
+Root ports send traffic towards root bridge
+Designated ports send traffic away from the root bridge
+
+{{./pasted_image.png}}
+
+{{./pasted_image001.png}}
+
+{{./pasted_image002.png}}
+
+
+{{./pasted_image003.png}}
+{{./pasted_image004.png}}
+
+
+{{./pasted_image005.png}}
+{{./pasted_image006.png}}
+
+
+{{./pasted_image007.png}}
+{{./pasted_image008.png}}
+
+
+{{./pasted_image009.png}}
+{{./pasted_image010.png}}
+
+
+{{./pasted_image011.png}}\
+{{./pasted_image012.png}}
+
+{{./pasted_image013.png}}
+

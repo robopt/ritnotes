@@ -1,0 +1,168 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-10T14:17:33-05:00
+
+====== 2015-02-10 ======
+Created Tuesday 10 February 2015
+
+* Data movement
+	* movl src, dst
+		* dst <- src
+	* leal src, dst
+		* dst <- effective address of src
+	* rep
+	   movsl
+	* block copy using %esi, %edi, %ecx, and direction flag
+	* pushl dist
+		* Push dst onto stack
+	* popl
+		* Pop into dst from stack
+	* pushal
+		* Push %eax-%edx, %esi, %edi, %esp, and %ebp
+	* popal
+		* Pop into %eax-%edx, %esi, %edi, %esp, and %ebp
+	* pushfl
+		* push %eflags
+	* popfl
+		* Pop %eflags
+* Arithmatic
+	* incl dst
+	* decl dst
+	* addl src, dst
+	* subl src, dst
+	* andl src, dst
+	* orl src, dst
+	* xorl src, dst
+	* cmpl src, dst
+		* Like sub, but discard results
+	* testl src, dst
+		* Like and, but discards results
+* Multiply and Devide instructions
+	* Operation depends on number and size of operands
+		* Signed numbers: idivx src
+		* Unsigned numbers: divx src
+	* Specifications
+		* x is the operand size (byte, word, long, quad)
+		* produces quotient and remainder in separate registers
+		* src can be either a GPR or a memory operand
+	* 3 Multiply variants
+		* Variant #1
+		* Variant #2
+		* Variant #3
+* Control Flow Instruction
+	* loop dst
+		* jump to dst until %ecx is 0
+	* jmp dst
+		* Jump to dst
+	* jxx dst
+		* Conditional jump to dst
+	* call dst
+		* pushl %eip; jump to dst
+	* ret
+		* popl %eip
+	* ret $n
+		* popl %eip; addl $n, %esp
+* Special Purpose
+	* enter $n $0
+		* pushl %ebp; movl %esp, %ebp; subl $n, %esp
+	* leave
+		* movl %ebp, %esp; popl %ebp
+	* int $n
+		* Generate interrupt #n
+	* iret
+		* Return from interrupt (16-bit form)
+	* iretd
+		* Return from interrupt (32-bit form)
+	* iretq
+		* Return from interrupt (64-bit form - sort of)
+* Conditional Jump
+	* Used to implement standard control structures
+	* All test condition flags in %eflags
+	* Most have names indicating results from comparisons
+		* Many have multiple mnemonics, too
+	* Several variants:
+		* Unsigned comparison ("above" and "below")
+			* JA/JNBE
+				* Jump Above / Jump Not Below or Equal
+			* JAE/JNB
+				* Jump Above or Equal / Jump Not Below
+			* JB/JNAE
+				* Jump Below / Jump Not Above or Equal
+			* JBE/JNA
+				* Jump Below or Equal / Jump Not Above
+		* Signed comparison ("greater than" and "less than")
+			* asdf
+		* Neutral
+	* Testing individual flags: ** pg 32 **
+		* CF (Carry Flag)
+			* Test for 0 - JNC
+			* Test for 1 - JC
+		* PF (
+			* Test for ...
+* Examples **pg 33**
+	* Clear register
+		* xorl %reg, %reg
+
+
+* Using C with Assembly Language
+	* Need to know how to interface the two
+	* Issues
+		* Calling sequences for functions
+		* Parameter passing conventions
+		* Stack frame formats 
+		* Runtime contraints
+		* System calls from assembly
+	* Easy way to find these out:
+		* See what compiler does
+* Example
+	* Consider this code:
+		* ans = funct( 4, 2, 5 );
+	* Compiled with -S option, gcc 3.4.6
+		* subl $4, %esp
+			* GCC Tries to maintain the stack -> always push a multiple of 16 bytes.
+		* pushl $5
+		* pushl $2
+		* pushl $4
+		* call    func
+		* addl   $16, %esp
+		* movl  %eax, -4(%ebp)
+	* Compiled with -S option, gcc 4.6.3
+		* subl $40, %esp
+			* GCC Tries to maintain the stack -> always push a multiple of 16 bytes.
+		* movl $5, 8(%esp)
+		* movl $2, 4(%esp)
+		* movl $4
+		* call    func
+		* movl  %eax, -12(%ebp)
+	* Compiled with -S option, gcc 4.8.2
+		* subl $16, %rsp
+			* GCC Tries to maintain the stack -> always push a multiple of 16 bytes.
+		* movl $5, %edx
+		* movl $2, %esi
+		* movl $4	 %edi
+		* call    func
+		* movl  %eax, -4(%rbp)
+* Example: Function Translation
+	* Function
+		int funct ( int x, int y, int z ) {
+			return x - y * z;
+		}
+	* Compiled with -S option, gcc 3.4.6
+		.globl func
+			.type	func, @function
+		func:
+			pushl	%ebp
+			movl		%esp, %ebp
+			movl		12(%ebp), %eax
+			movl		%eax, %edx
+			imull		16(%ebp), %edx
+			movl		8(%ebp), %eax
+			subl		%edx, %eax
+			leave
+			ret
+			.size		func, .-func
+			.ident	"GCC: (GNU) 3.4.6"
+	* Compiled with -S option, gcc 4.6.3
+		** page 7 **
+	* Compiled with -S option, gcc 4.8.2, 64-bit
+

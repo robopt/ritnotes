@@ -1,0 +1,96 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-13T09:59:22-05:00
+
+====== 2015-02-13 ======
+Created Friday 13 February 2015
+
+* Layer 3 Environments
+	* Robust network design includes efficient transfer of packets or frames
+	* Also considers how to recover quickly from faults in the network
+	* Layer 3 routing protocols keep track of redundant paths, allowing many paths to remain up and active
+	* Advantages:
+		* Fault-tolerance, load-sharing
+			* if something breaks, the system will auto correct and get around that break
+* Layer 2 Environments
+	* No routing protocols used
+	* Active, redundant paths not allowed or desired
+	* Spanning Tree Protocol (STP) provides network link redundancy so a Layer 2 switched network can recover from failures without intervention in a timely manner
+	* STP is defined in the IEEE 802.1D standard
+		* Everything else in Layer 2 
+	* Only 1 active path allowed at a time
+* Transparent Bridge / Ethernet Switch
+	* Builds table correlating source MAC address with port numbers
+	* Floods broadcasts out all available ports
+	* Unknown unicast = broadcast
+	* Frames not modified by bridge{{./pasted_image001.png}}
+
+{{./pasted_image002.png}}
+* Loops
+	* Corrupts SAT
+	* Inifinite loop of frames between switches
+	* Story 1
+		* 2 Switches, flushed SAT's, infinite loop and corrupted SATs
+	* Story 2
+	* Story 3
+* Preventing Loops with STP
+	* STP enables switches to be aware of each other and to negotiate a loop-free path
+	* Loops are discovered before they're made available
+	* Redundant links shut down, but can be brought up easily in case of link failure
+	* Algorithm chooses reference point, calculates redundant paths to that point, picks one, blocks the other
+* Bridge Protocol Data Units
+	* Switch sends BPDU out port using unique MAC address of port itself as source address
+	* Destination address is the STP multicast address 01-80-c2-00-00-00
+	* Configuration BPDU - Spanning Tree Computation
+	* Topology Change Notification (TCN) BPDU - Announces network topology changes
+	{{./pasted_image003.png}}
+	
+	* Bridge ID
+		* 8-byte value
+		* Bridge Priority (2 bytes) - priority or weight of switch in relation to all other switches
+			* 0 through 65,535, configurable in increments of 4096
+			* **32768** (**0x8000**) default Catalyst switch value
+				* ABCD
+					* A - 4096
+					* B - 256
+					* C - 16
+					* D - 1
+		* MAC Address (6 bytes)
+	* Port ID
+		* 2-byte value
+			* Port Priority (1 byte) - priority or weight of switch in relation to all other ports
+				* 0 through 240, configurable in increments of 16
+				* 128 (0x80) default Catalyst switch value
+			* Port Number (1 byte)
+				* Represented by different numbers on different devices
+	* Electing a root bridge
+		* BPDUs sent with Root Bridge ID equal to each switch's Bridge ID
+		* Sender Bridge ID equal to each switch's Bridge ID as well
+		* After root decided, configuration BPDUs only sent by Root Bridge
+		* All other switches must forward or relay BPDUs
+		* BPDUs analyzed to see if "better" Root Bridge exists
+		* When switch hears of better Root Bridge, it replaces the Root Bridge ID, and adertises it
+{{./pasted_image004.png}}
+
+* Sender Bridge ID
+* Root Bridge ID
+* Electing Root
+	* Lower is better
+* Electing Root Ports
+	* Each non-root switch must figure out where it is in relation to the Root Bridge
+	* Performed by selecting only one Root Port on each non-root switch
+	* Root Path Cost
+	* Path Cost
+{{./pasted_image005.png}}
+
+{{./pasted_image006.png}}
+
+* Electing Designated Ports
+	* One of the links on a segment should forward traffic to and from that segment (DP)
+	* Based on the lowest cumulative Root Path cost to the Root Bridge
+
+{{./pasted_image007.png}}
+Every segment needs a designated port
+
+* SAT
+	* 300 seconds before it's wiped

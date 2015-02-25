@@ -19,8 +19,8 @@ Created Sunday 01 February 2015
 		* Birth Dates
 		* SSN
 	* Identities Exposed
-		* 2012 - 552 Million
-		* 2013 - 93 Million
+		* 2012 - 93 Million
+		* 2013 - 552 Million
 	* Causes
 		* Hackers - 34%
 		* Accidentally - 29%

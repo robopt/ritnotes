@@ -1,0 +1,137 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-19T13:59:11-05:00
+
+====== 2015-02-19 ======
+Created Thursday 19 February 2015
+
+Apply @ Google.com
+google.com/careers/students
+eatnumber1@google.com
+	Russ Harmin
+	Kayla 
+
+Google Questions
+	Data Structures
+	Algorithms
+	Write a function to do xyz
+		Palindrome
+
+Project 1
+
+	You are to write the following routines. The data types uint8 and uint16 are 8-bit and 16-bit unsigned integers.
+	The following routines are to be written in C:
+	int cmp_cust( Customer *c1, Customer *c2);
+		Compares the two Customer nodes c1 and c2; see below for return values.
+	Customer *find_cust( char cid1, uint16 cid2 );
+		Locates the Customer node which has the specified CID, and returns a pointer to it; if the CID is not found, returns 0.
+	Customer *new_cust( char *name, char cid1, uint16 cid2, uint16 limit );
+		Allocates a new Customer node. If the allocation succeeds, copies the supplied arguments into the appropriate fields of the new node, clears all other fields to 0, and returns the pointer to the new node. If the allocation fails, returns 0.
+	Customer *add_to_cust_list( Customer *new);
+		Traverses the Customer list and adds the customer record pointed to by new to the list in the appropriate place. If there is already a record for this Customer in the list, return a pointer to it; otherwise, add the new part to the list and return a null pointer. 
+	
+	The following routines are to be written in assembly language:
+	int cmp_part( Part *p1, Part *p2);
+		Compares the two Part nodes p1 and p2; see below for return values.
+	Part *find_part( char pid1, char pid2, uint16 pid3 );
+		Locates the Part node which has the specified PID, and returns a pointer to it; if the PID is not found, returns 0.
+	Part *new_part( char pid1, char pid2, uint16 pid3, uint8 avail, uint16 price1, uint8 price2 );
+		Allocates a new Part node. If the allocation succeeds, copies the supplied arguments into the appropriate fields of the new node, clears all other fields to 0, and returns the pointer to the new node. If the allocation fails, returns 0.
+	Part *add_to_part_list( Part *new );
+		Traverses the Part list and adds the part record pointed to by new to the list in the appropriate place. If there is already a record for this Part in the list, return a pointer to it; otherwise, add the new part to the list and return a null pointer. 
+
+* Devices 1
+	* Devices connected to machine via controllers
+	* Communicate with device via device regiesters
+		* Control registers: commands, status
+		* Data registers: input and output data
+	* Two main approaches
+		* Controller connected to memory bus
+		* Controller connected via port (special communication channel)
+* Memory Bus Approach
+	* Address space is subdivided
+		* n addresses
+		* First k are "real" memory
+		* n-k locations are device registers
+	* Method
+		* Instruction generates reference to a location
+		* Controller recognizes reference and handles request
+	* +: can  do (almost) all through C
+	* - : split memory address
+* Port Approach
+	* Device connected via i/o port
+	* Method
+		* Special Instructions read/write ports
+	* + : completely separate from memory space
+	* - :	must use assembly language
+* Device Communication
+	* Many devices work the same way
+		* Experience with one helps you figure out how others work
+	* Real devices are often very complicated
+	* We'll start with simplier, imaginary device
+* How to communicate?
+	* Two classic methods
+	* Polled
+		* CPU continually "polls" device to see if it needs to be serviced
+		* Easy to use, but can be very inefficient
+	* Interrupt-driven
+		* Device informs CPU when it needs service
+		* Harder to use, but minimizes the time
+* KEN-X Serial I/O Devices
+	* Async, character-oriented i/o controller
+	* Two versions:
+		* KEN-1: polled i/o only
+		* KEN-2: polled or interrupt-driven i/o
+	* Simple interface, minimal configuration required
+* KEN-X Device Registers
+	* Five eight-bit registers
+		* Status
+			* Current status of the device
+		* Interrupt
+			* Configure interrupt generation
+		* Format
+			* General device configuration
+		* Receiver Data
+			* 1 byte buffer for incoming
+		* Transmitter Data
+			* 1 byte buffer for outgoing
+	* Each register has a specific format
+	* Each address used to access two registers
+		* Read/write operation determines which register you get
+			* Status/Receiver Data are read-only
+			* Interrupt Enable, Format, and Transmitter Data are write-only
+* KEN-X Status Register Layout
+	* Bits 7-3: always 0
+	* Bit 2: Parity
+		* Contains 1 when the character in the Receiver Data register has a parity error
+		* Cleared when the status register is read
+	* Bit 1: TX_READY
+		* Contains 1 when the transmitter is ready to accept another character
+		* Writing a character to the Transmitter Data register clears this bit
+	* Bit 0: RX_READY
+		* Contains 1 when there is a character in the Receiver Data register
+		* Reading the Receiver Data register clears this bit
+* KEN-X Interrupt Enable Register Layout
+	* Bit 7: always 1
+		* Selects Interrupt Enable register when address is written to
+	* Bits 6-2: always 0
+	* Bit 1: Transmitter interrupt enable
+		* When 1, a transmitter interrupt will be requested when TX_READY changes from 0 to 1
+	* Bit 0: Receiver interrupt enable
+		* When 1, a receiver interrupt will be requested when RX_READY changes from 0 to 1
+* KEN-X Format Register Layout
+	* Bit 7: always 0
+		* Selects Format register when address is written to
+	* 6-4: Data rate
+		* Controls the tx/rx data rate
+		* Settings
+			* 000: 50 bps
+			* 001: 300 bps
+			* 010: 1200 bps
+			* 011: 2400 bps
+			* 100: 9600 bps
+			* 101: 28,800 bps
+			* 110: 57,600 bps
+			* 111: 115,200 bps
+	* Bit 3: Odd parity
+	* Bit 2: Parity enable

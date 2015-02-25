@@ -1,0 +1,42 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-09T08:11:50-05:00
+
+====== 2015-02-08 ======
+Created Monday 09 February 2015
+
+* Networking for System Administration
+	* Why do we care about the networ if we are ony concerned with the systems?
+	* What do we need from the network to support our applications?
+	* What background services do we rely on to make our services work?
+	* What principles are involved with this?
+	* If we deploy the services, what do we need from our network?
+	* What do we need to do to create our own private network and why do we want to do this?
+* What infomation about the network does an operating system need to know?
+	* How does the operating system discover the network and the services that exist on it?
+	* What network services need to exist on a network?
+	* How can we characterize a useful network?
+		* Well known and predictable
+		* Reliable and consistent transmission
+	* How can we advertise services on a network?
+	* How can we ensure the confidentiality, integrity, and availability of the services that exist on a network?
+* Addressing Issues
+	* Address range?
+	* Guidelines:
+		* Hosts at low end of range
+		* Servers at upper end
+		* Default gateways at highest value
+	* Statically assigned vs DHCP
+		* Servers static
+		* Hosts DHCP
+	* What is the broadcast domain
+	* How can we test this?
+* DHCP
+	* Client -> Server
+		* DHCP Discover
+	* Server -> Client
+		* DHCP Offer
+	* Client -> Server
+		* DHCP Request
+	* Server -> Client
+		* DHCP ACK

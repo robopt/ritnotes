@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-06T13:19:36-05:00
+
+====== 2015-02-06 ======
+Created Friday 06 February 2015
+
+* Registers
+	* 0 - zero - always contains 0
+	* ...
+* Arithmatic and Logic Instructions
+	* mult rs1, rs2
+		* result is placed into a 64 bit register.
+			* 32-bit high
+			* 32-bit low

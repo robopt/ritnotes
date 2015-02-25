@@ -1,0 +1,123 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-06T09:56:28-05:00
+
+====== 2015-02-06 ======
+Created Friday 06 February 2015
+
+* Hub vs Switch
+	* Hub sends to all ports
+		* Security issues
+		* Bandwidth issues
+		* Collisions
+			* Messages arriving at same time would collide and would need to be retransmitted
+	* Switch creates a "Virtual" circuit
+	* Multiport "repeater"
+	* CD (Collision Detection)
+	* CSMA
+
+* Bridge
+	* Switch with 2 ports, was used to interface 2 hubs together
+	* TL;DR so that hubs didn't spam eachother
+
+* Repeater
+	* Repeater -> digital amplifier
+
+* Full-Duplex
+	* Not only Bi-Directional, but simultaneous
+
+* Switch Modes
+	* Store and Forward
+		* Ability to do error checking at the router
+		* Whole frame is read (1022 bytes max)
+		* Error Checking
+			* Figure 1 shows a store-and-forward switch receiving an Ethernet frame in its entirety.
+			* At the end of that frame, the switch will compare the last field of the datagram against its own frame-check-sequence (FCS) calculations, to help ensure that the packet is free of physical and data-link errors. 
+			* The switch then performs the forwarding process.
+			* Whereas a store-and-forward switch drops invalid packets, cut-through devices forward them because they do not get a chance to evaluate the FCS before transmitting the packet. 
+				Figure 1. Ethernet Frame Entering a Store-and-Forward Bridge or Switch (from Left to Right) 
+			{{./pasted_image.png}}
+	* Automatic Buffering
+		* The process of storing and then forwarding allows the switch to handle a number of networking conditions simply by the way it operates.
+		* The ingress buffering process that a store-and-forward switch performs provides the flexibility to support any mix of Ethernet speeds, starting with 10 Mbps.
+		* For example, handling an incoming frame to a 1-Gbps Ethernet port that needs to be sent out a 10-Gbps interface is a fairly straightforward process.
+		* The forwarding process is made easier by the fact that the switch's architecture stores the entire packet.
+	* Access Control Lists
+		* Because a store-and-forward switch stores the entire packet in a buffer 2, it does not have to execute additional ASIC or FPGA code to evaluate the packet against an access control list (ACL).
+		* The packet is already there, so the switch can examine the pertinent portions to permit or deny that frame.
+	* Cut Through
+		* Streaming
+		* Advantage: Speed.
+		* Header is read (48 bits)
+		* Invalid Packets
+			* Unlike store-and-forward switching, cut-through switching flag s but does not get a chance to drop invalid packets.
+			* Packets with physical- or data-link-layer errors will get forwarded to other segments of the network.
+			* Then, at the receiving end, the host invalidates the FCS of the packet and drops the packet.
+		* Timing of Cut-Through Forwarding
+			* In theory, as indicated in Figure 2, a cut-through switch can make a forwarding decision as soon as it has looked up the DMAC address of the data packet. 
+			* The switch does not have to wait for the rest of the packet to make its forwarding decision.
+			* However, newer cut-through switches do not necessarily take this approach. 
+			* A cut-through switch may parse an incoming packet until it has collected enough information from the frame content. 
+			* It can then make a more sophisticated forwarding decision, matching the richness of packet-handling features that store-and-forward switches have offered over the past 15 years. 
+				Figure 2. Cut-Through Ethernet Switching: in theory, frames are forwarded as soon as the switch receives the DMAC address, but in reality, several more bytes arrive before forwarding commences 
+			{{./pasted_image001.png}}
+	* EtherType Field
+		* In preparation for a forwarding decision, a cut-through switch can fetch a predetermined number of bytes based on the value in EtherType field, regardless of the number of fields that the switch needs to examine. 
+		* For example, upon recognizing an incoming packet as an IPv4 unicast datagram, a cut-through switch checks for the presence of a filtering configuration on the interface, and if there is one, the cut-through switch waits an additional few microseconds or nanoseconds to receive the IP and transport-layer headers (20 bytes for a standard IPv4 header plus another 20 bytes for the TCP section, or 8 bytes if the transport protocol is UDP). 
+		* If the interface does not have an ACL for traffic to be matched against, the cut-through switch may wait for only the IP header and then proceed with the forwarding process. 
+		* Alternatively, in a simpler ASIC implementation, the switch fetches the whole IPv4 and transport-layer headers and hence receives a total of 54 bytes up to that point, irrespective of the configuration. 
+		* The cut-through switch can then run the packet through a policy engine that will check against ACLs and perhaps a quality-of-service (QoS) configuration.
+	* Wait Time
+		* With today's MAC controllers, ASICs, and ternary content addressable memory (TCAM), a cut-through switch can quickly decide whether it needs to examine a larger portion of the packet headers.
+		* It can parse past the first 14 bytes (the SMAC, DMAC, and EtherType) and handle, for example, 40 additional bytes in order to perform more sophisticated functions relative to IPv4 Layer 3 and 4 headers.
+		* At 10 Gbps, it may take approximately an additional 100 nanoseconds to receive the 40 bytes of the IPv4 and transport headers. In the context of a task-to-task (or process-to-process or even application-to-application) latency requirement that falls in a broad range, down to a demanding 10 microseconds for the vast majority of applications, that additional wait time is irrelevant.
+		* ASIC code paths are less complex when IP frames are parsed up to the transport-layer header with an insignificant latency penalty.
+	* Advantages of Cut-Through Ethernet Switching
+		* A primary advantage of cut-through switches is that the amount of time the switch takes to start forwarding the packet (referred to as the switch's latency) is on the order of a few microseconds only, regardless of the packet size. If an application uses 9000-byte frames, a cut-through switch will forward the frame (if that is the appropriate decision to make for that datagram) a few microseconds to a few milliseconds earlier than its store-and-forward counterpart (a few microseconds earlier in the case of 10-Gbps Ethernet).
+		* Furthermore, cut-through switches are more appropriate for extremely demanding high-performance computing (HPC) applications that require process-to-process latencies of 10 microseconds or less.
+		* In some scenarios, however, cut-through switches lose their advantages.
+		* Windowed Protocols and Increased Response Time
+			* Even where the cut-through methodology can be used, windowed protocols (such as TCP) can increase end-to-end response time, reducing the effectiveness of the lower switching delay of cut-through switching and making the latency of store-and-forward switches essentially the same as that of cut-through switches.
+		* User Perception of Response Times with Most Applications
+			* In most enterprise environments, including the data center, users do not notice a difference in response times whether their environment is supported with store-and-forward or cut-through switches.
+			* For example, users requesting a file from a server (through FTP or HTTP) do not notice whether the reception of the beginning of the file is delayed by a few hundred microseconds. 
+			* Furthermore, end-to-end latencies for most applications are in the tens of milliseconds. For instance, an application latency of about 20 milliseconds on a cut-through or store-and-forward switch that has a 20-microsecond latency (which would be 1/1000 of the application latency) is negligible.
+		* Examining More Fields
+			* Switches do not necessarily have cut-through and store-and-forward "modes" of operation. As stated earlier, cut-through switches usually receive a predetermined number of bytes, depending on the type of packet coming in, before making a forwarding decision. The switch does not move from one mode to the other as dictated by configuration, speed differential, congestion, or any other condition.
+			* For example, in the case of a configuration that permits or denies packets with certain IPv4 TCP port ranges, the cut-through switch examines 54 bytes before it makes a forwarding decision. For a non-IP packet, the switch may receive the first 16 bytes of the frame, if the user has configured some kind of QoS policy based on the IP precedence bits in the type-of-service (ToS) byte or on the differentiated services code point (DSCP) bits.
+			* Figure 3 shows a standard IPv4 packet structure in an Ethernet ARPA frame. The cut-through switch takes in 54 bytes of the Ethernet header (not counting the 8 bytes of the preamble, which serves only to wake up the transceiver and indicate the arrival of a frame) and, depending on the vendors' design, may then run a policy engine against the pertinent fields in the IPv4 header to determine whether, for example, the TCP destination port matches the ACL, or the source IP address is in the range of that ACL. 
+					Figure 3. A Cut-Through Forwarding Decision is made as soon as enough bytes are received by the switch to make the appropriate decision 
+					{{./pasted_image002.png}}
+	* Fragment Free
+		* Trying to detect the 
+	* Adaptive Cut-Through
+		* 3`Starts out as "Cut Through", if too many errors, then swaps to store and forward.
+* DIX - Digitial Equipment Corporation, Intel and Xerox
+[ Preamble 8bytes ][ Destination 6bytes ][ Source 6bytes ][ Length 2bytes ][ Data and padding 46-1500bytes ][ FCS 4bytes ]
+* IEEE 802.3 (Ethernet II)
+[ Preamble 7bytes ][ SFD 1bytes ][ Destination 6bytes ][ Source 6bytes ][ Type 2bytes ][ Data and padding 46-1500bytes ][ FCS 4bytes ]
+	SFD - Start Frame Delimiter
+	Frame starts with Destination
+	Type - What's inside (ARP, IP, etc)
+	Data - Data up to 1500
+
+* ARP
+	* Request
+		* Length 42 bytes (60 bytes actually -> NIC adds with 18-bytes of padding)
+			* Destination 6-bytes
+			* Source 6-bytes
+			* Type 2-bytes
+			* Data 28-bytes
+		* Destination Mac
+			* ALWAYS BROADCAST -> FF:FF:FF:FF:FF:FF
+		* Target Mac
+			* ALWAYS 00:00:00:00:00:00
+	* Reply
+		* Length 60-bytes
+			* 18-bytes of padding
+		* Destination Mac
+			* ALWAYS UNICAST -> to Requestor's Mac
+		* Target Mac
+			* Filled in by respondee
+
+Diagram and Extra notes: http://www.cisco.com/c/en/us/products/collateral/switches/nexus-5020-switch/white_paper_c11-465436.html

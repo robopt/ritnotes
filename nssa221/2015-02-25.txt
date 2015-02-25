@@ -1,0 +1,35 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-25T08:06:03-05:00
+
+====== 2015-02-25 ======
+Created Wednesday 25 February 2015
+
+* Unix Account Management
+	* User account info stored in the passwd file, /etc/passwd
+	* Group info stored in /etc/group
+	* Hash stored in /etc/shadow
+* Passwd File
+	* Username
+	* Password
+	* User ID
+		* Unique for each user. UID 0 reserved for root. 1-99 for pre-defined accounts. 100-99 reserved for 999 resreved by system for admin & system accounts/groups
+	* Group ID
+		* Primary group id -> stored in /etc/group
+	* User ID Info
+		* Comment field
+	* Home Directory
+		* Absolute path
+	* Command/shell
+		* Absolute path
+* Shadow File
+	* Username
+		* User Login Name
+		* Password
+			* User Encrypted password
+		* Last pass change
+		* Min days required between password changes
+		* Max days password is valid
+		* Warn
+		* Inactive
+		* Expire

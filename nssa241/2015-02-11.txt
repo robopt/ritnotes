@@ -1,0 +1,35 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-11T09:59:08-05:00
+
+====== 2015-02-11 ======
+Created Wednesday 11 February 2015
+
+* ICMP 
+	* Error messages and Informational messages
+	* Ordering of fragments: Fragment offset
+* Ethernet Frames
+	* 46bytes - 1500bytes
+	* Data Payload
+	* Wireshare
+		* edit
+			* preferences
+				* protocol
+					* ipv4
+						* uncheck reassemble fragmented IPv4 datagrams
+* Time to live
+	* IPv6 -> Max hops
+	* Router decrements TTL
+		* If a router decrements it to 0, packet is destroyed and ICMP error message is sent back to sender
+			* Time-to-live exceeded - "Hey shmuck, I blew up your packet"
+
+* Tracert
+	* First hop will be gateway - no exceptions.
+	* Windows:
+		* Does TTL 1 -> N hops icmp requests
+		* Judges by the ICMP error responses
+	* Linux/Cisco:
+		* UDP datagrams with really high port destinations
+		* Judges by the ICMP error responses
+* Checking if icmp is blocked
+	* if windows tracert fails and linux/cisco succeeds

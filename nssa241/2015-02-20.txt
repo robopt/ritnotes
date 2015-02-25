@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-20T10:10:31-05:00
+
+====== 2015-02-20 ======
+Created Friday 20 February 2015
+
+* Uplink Fast
+	* if a non-blocked port goes down
+		* goes straight to forwarding
+	* increases bridge id
+	* increases port cost
+	* sends spoofed frame
+		* source (traffic destined for dead link)
+		* multicast address
+		* corrects SAT

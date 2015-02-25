@@ -1,0 +1,40 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-02-16T08:05:38-05:00
+
+====== 2015-02-16 ======
+Created Monday 16 February 2015
+
+* AD Design
+	* Two Parts:
+		* Logical description of the organization
+		* Physical topology of the organization
+	* Phases in AD DS
+		* Design
+		* Deployment
+		* Operations
+* AD Design Philosophy
+	* Scalable: # of objects can vary
+	* Extensible: modify rules for objects
+	* Internet Standards
+	* Single Seat Administration
+	* Fault Tolerance: all DC's are equal
+		* Multi-master database
+		* Certain exceptions (ex. DHCP)
+	* Secure: fine granularity of permissions
+		* Can get you in trouble!
+	* Interoperability
+* AD logical Design Methodology
+	* Identify the deployment project participants
+	* Create a forest design
+	* Create a domain design for each forest
+	* Design a DNS infrastructure to support AD DS for each forest
+	* Design organizational units for delegation of administration for each forest
+* Site Topology Methodology
+	* Collect Network Information
+	* Plan domain controller placement
+	* Create a site design
+	* Create a site link design
+	* Create a site link bridge design
+* Replication Schedule
+	* Can be up to 8 hours for propegation
