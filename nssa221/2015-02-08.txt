@@ -6,7 +6,7 @@ Creation-Date: 2015-02-09T08:11:50-05:00
 Created Monday 09 February 2015
 
 * Networking for System Administration
-	* Why do we care about the networ if we are ony concerned with the systems?
+	* Why do we care about the network if we are only concerned with the systems?
 	* What do we need from the network to support our applications?
 	* What background services do we rely on to make our services work?
 	* What principles are involved with this?

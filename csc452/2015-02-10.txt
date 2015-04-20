@@ -6,7 +6,7 @@ Creation-Date: 2015-02-10T14:17:33-05:00
 Created Tuesday 10 February 2015
 
 * Data movement
-	* movl src, dst
+	* movl src,  
 		* dst <- src
 	* leal src, dst
 		* dst <- effective address of src

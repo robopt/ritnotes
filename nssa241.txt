@@ -2,7 +2,7 @@ Content-Type: text/x-zim-wiki
 Wiki-Format: zim 0.4
 Creation-Date: 2015-01-26T09:26:55-05:00
 
-====== nssa241 ======
+====== ssa241 ======
 Created Monday 26 January 2015
 
 Intro to Routing and Switching

@@ -37,7 +37,7 @@ Created Wednesday 28 January 2015
 * OSI Model (Open System Interconnect)
 	* Layer 7 - Application
 		* API (Application Programming Interface)
-			* No networking going on put the process has started
+			* No networking going on but the process has started
 		* Examples
 			* DNS (Domain Name System)
 				* Map Name to an IP
@@ -63,7 +63,7 @@ Created Wednesday 28 January 2015
 			* 1 at a time
 			* All wireless is half-duplex (cant send/recieve on same freq)
 		* Full-Duplex
-			* Send an recieve at same time
+			* Send and recieve at same time
 			* Wired Networking if the NIC supports it
 		* Between Applications
 		* Mainly Software Developers

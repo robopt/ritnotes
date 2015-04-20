@@ -37,4 +37,4 @@ Created Monday 16 February 2015
 	* Create a site link design
 	* Create a site link bridge design
 * Replication Schedule
-	* Can be up to 8 hours for propegation
+	* Can be up to 8 hours for propagation
